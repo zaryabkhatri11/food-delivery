@@ -93,7 +93,7 @@ class User extends Authenticatable
     }
 
 
-    public function restaurants() :HasOne
+    public function restaurant() :HasOne
     {
         return $this->hasOne(Restaurant::class, 'owner_id');
     }

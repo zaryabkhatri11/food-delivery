@@ -18,7 +18,6 @@ class RoleSeeder extends Seeder
     {
         $this->createAdminRole();
         $this->createVendorRole();
-
     }
 
 
@@ -28,21 +27,24 @@ class RoleSeeder extends Seeder
         $newRole->permissions()->sync($permissions);
     }
 
-    protected function createAdminRole() :void
+    protected function createAdminRole(): void
     {
         $permissions = Permission::query()
-            ->where('name' , 'like', 'user.%')
-            ->orWhere('name' , 'like', 'restaurant.%')
+            ->where('name', 'like', 'user.%')
+            ->orWhere('name', 'like', 'restaurant.%')
             ->pluck('id');
 
-        $this->createRole(RoleName::ADMIN , $permissions);
+        $this->createRole(RoleName::ADMIN, $permissions);
     }
 
-    protected function createVendorRole() :void
+    protected function createVendorRole(): void
     {
-        $this->createRole(RoleName::VENDOR, collect());
+
+        $permissions = Permission::query()
+            ->where('name', 'like', 'category.%')
+            ->orWhere('name', 'like', 'product.%')
+            ->pluck('id');
+
+        $this->createRole(RoleName::VENDOR, $permissions);
     }
-
-
-
 }

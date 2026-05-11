@@ -30,7 +30,7 @@ class UserSeeder extends Seeder
     }
 
 
-    public function createVendorUser() :void
+    public function createVendorUser(): void
     {
         $vendor = User::create([
             'name'     => 'Restaurant owner',
@@ -46,5 +46,4 @@ class UserSeeder extends Seeder
             'address' => 'Address SJV14',
         ]);
     }
-
 }

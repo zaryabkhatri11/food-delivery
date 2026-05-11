@@ -14,9 +14,9 @@ class PermissionSeeder extends Seeder
     public function run(): void
     {
 
-        $actions = ['viewAny', 'view','create', 'update', 'delete' , 'restore' , 'forceDelete'];
+        $actions = ['viewAny', 'view', 'create', 'update', 'delete', 'restore', 'forceDelete'];
 
-        $resources = ['user', 'restaurant'];
+        $resources = ['user', 'restaurant', 'category', 'product'];
 
         collect($resources)
             ->crossJoin($actions)
@@ -27,7 +27,5 @@ class PermissionSeeder extends Seeder
                     'name' => $permission
                 ]);
             });
-
-
     }
 }
