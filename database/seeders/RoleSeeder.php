@@ -16,6 +16,8 @@ class RoleSeeder extends Seeder
      */
     public function run(): void
     {
+        $this->createAdminRole();
+        $this->createVendorRole();
 
     }
 
@@ -34,6 +36,11 @@ class RoleSeeder extends Seeder
             ->pluck('id');
 
         $this->createRole(RoleName::ADMIN , $permissions);
+    }
+
+    protected function createVendorRole() :void
+    {
+        $this->createRole(RoleName::VENDOR, collect());
     }
 
 

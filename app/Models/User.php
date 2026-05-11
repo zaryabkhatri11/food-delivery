@@ -7,6 +7,7 @@ use App\Enum\RoleName;
 use Database\Factories\UserFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -89,5 +90,11 @@ class User extends Authenticatable
     public function hasPermission(string $permission): bool
     {
         return  in_array($permission, $this->Permissions() , true);
+    }
+
+
+    public function restaurants() :HasOne
+    {
+        return $this->hasOne(Restaurant::class, 'owner_id');
     }
 }
